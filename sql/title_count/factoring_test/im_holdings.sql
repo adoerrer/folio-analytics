@@ -15,7 +15,7 @@ SELECT
     call_number_type.name AS "callnumber_type",
     hold.call_number AS "callnumber",
     statisticalcodes.name  AS "statistical_code",
-    hold.receipt_status AS "receipt_status",
+    json_extract_path_text(hold.data, 'receipt_status') AS "receipt_status",
     library.name AS "library",
     campus.name AS "campus",
     institution.name AS "institution",

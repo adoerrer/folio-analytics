@@ -11,9 +11,10 @@ CREATE TABLE IF NOT EXISTS local.im_instance_natureofcontentterms AS (
 		instance_natureofcontentterms_extract AS (
 		    SELECT
 		        inst.id AS instance_id,
-		        JSON_ARRAY_ELEMENTS_TEXT(JSON_EXTRACT_PATH(inst.data, 'natureOfContentTermIds')) :: VARCHAR AS instance_natureofcontent_id
+		        json_array_elements_text(nature_of_content_term_ids)
+			        :: VARCHAR AS instance_natureofcontent_id
 		    FROM
-		        inventory_instances AS inst
+		        local.im_inventory_instances_ext AS inst
 		)
     SELECT
         instance_natureofcontentterms_extract.instance_id AS instance_id,
